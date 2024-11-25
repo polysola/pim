@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$PIM Pimling on Sol</title>
+    <link rel="icon" type="image/png" href="images/lggg-MQY6Rl0KflAdkdOARK88WHWjFligv9.png">
+    <link rel="apple-touch-icon" href="images/lggg-MQY6Rl0KflAdkdOARK88WHWjFligv9.png">
+    <link href="css/css2.css" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'DynaPuff', cursive;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #FBCFE8;
+            color: #831843;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        nav {
+            background-color: rgba(251, 207, 232, 0.8);
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 50px;
+            height: 50px;
+            transition: transform 0.2s;
+        }
+
+        .logo img:hover {
+            transform: scale(1.1);
+        }
+
+        .nav-links {
+            display: none;
+        }
+
+        .menu-toggle {
+            display: block;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+                gap: 2rem;
+            }
+
+            .menu-toggle {
+                display: none;
+            }
+        }
+
+        .nav-links a {
+            color: #be185d;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #9d174d;
+        }
+
+        .hero-section {
+            position: relative;
+            min-height: 100vh;
+            background-image: url('images/sf4.jpg-KgwVmmvph6OKMZ1yaaeagXWnlcqmNC.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 6rem 0 2rem;
+            margin-bottom: 0;
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+            padding: 2rem;
+            border-radius: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-gradient {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background: linear-gradient(to bottom, rgba(251, 207, 232, 0), #FBCFE8);
+        }
+
+        .hero-content .slider {
+            margin: 0;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .hero-content .social-links {
+            margin-bottom: 0;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .slider {
+            position: relative;
+            height: 24rem;
+            max-width: 800px;
+            margin: 2rem auto 3rem;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            animation: neon 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes neon {
+            from {
+                box-shadow: 0 0 2px #fff, 0 0 4px #fff, 0 0 6px #fff, 0 0 8px #DB2777, 0 0 14px #DB2777, 0 0 16px #DB2777, 0 0 20px #DB2777, 0 0 30px #DB2777;
+            }
+
+            to {
+                box-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 3px #fff, 0 0 4px #DB2777, 0 0 7px #DB2777, 0 0 8px #DB2777, 0 0 10px #DB2777, 0 0 15px #DB2777;
+            }
+        }
+
+        .slider-container {
+            display: flex;
+            transition: transform 1s ease-in-out;
+            height: 100%;
+        }
+
+        .slider-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .slider-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .slider-button.left {
+            left: 1rem;
+        }
+
+        .slider-button.right {
+            right: 1rem;
+        }
+
+        .slider-dots {
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .slider-dot {
+            width: 0.75rem;
+            height: 0.75rem;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+        }
+
+        .slider-dot.active {
+            background-color: white;
+        }
+
+        .button {
+            background-color: #ec4899;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.2s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .button:hover {
+            background-color: #db2777;
+            transform: translateY(-2px);
+        }
+
+        .button.inverted {
+            background-color: #ec4899;
+            color: white;
+        }
+
+        .button.inverted:hover {
+            background-color: #db2777;
+        }
+
+        .button.copy-address {
+            background-color: white;
+            color: #ec4899;
+        }
+
+        .button.copy-address:hover {
+            background-color: #fdf2f8;
+            color: #db2777;
+        }
+
+        .button.buy-pim {
+            background-color: white;
+            color: #ec4899;
+        }
+
+        .button.buy-pim:hover {
+            background-color: #fdf2f8;
+            color: #db2777;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .social-link {
+            background-color: white;
+            color: #ec4899;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s, transform 0.2s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 10;
+        }
+
+        .social-link:hover {
+            background-color: #fce7f3;
+            transform: translateY(-2px);
+        }
+
+        .section {
+            margin-bottom: 5rem;
+            scroll-margin-top: 80px;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #be185d;
+            text-align: center;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .story-container {
+            background-color: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            animation: neon 1.5s ease-in-out infinite alternate;
+        }
+
+        @media (min-width: 768px) {
+            .story-container {
+                display: flex;
+                flex-direction: row-reverse;
+            }
+        }
+
+        .story-image {
+            flex: 1;
+            min-height: 300px;
+        }
+
+        .story-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .story-content {
+            flex: 1;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .story-content h3 {
+            font-size: 2.5rem;
+            color: #ec4899;
+            margin-bottom: 1rem;
+        }
+
+        .story-content p {
+            font-size: 1.25rem;
+            color: #831843;
+            margin-bottom: 1.5rem;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            aspect-ratio: 1 / 1;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .how-to-buy-section {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .parallax-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('images/lggg-QiELPeUK5wRwhJYs9CGnNphNdNKphf.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            transform: translateZ(-1px) scale(2);
+            z-index: 0;
+            opacity: 0.2;
+        }
+
+        .how-to-buy {
+            position: relative;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 0.5rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+        }
+
+        .how-to-buy ol {
+            list-style-type: none;
+            padding: 0;
+            font-size: 1.25rem;
+            color: #831843;
+            margin-bottom: 2rem;
+        }
+
+        .how-to-buy li {
+            margin-bottom: 2rem;
+        }
+
+        .how-to-buy h3 {
+            font-size: 1.5rem;
+            color: #ec4899;
+            margin-bottom: 0.5rem;
+        }
+
+        .how-to-buy p {
+            font-size: 1.25rem;
+            color: #831843;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #ec4899;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            font-size: 1.25rem;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .toast.show {
+            opacity: 1;
+        }
+
+        .energy-bar {
+            width: 100%;
+            height: 10px;
+            background-color: #f9a8d4;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .energy-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background-color: #ec4899;
+            animation: energyFlow 3s linear infinite;
+        }
+
+        @keyframes energyFlow {
+            0% {
+                left: -100%;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+
+        .tiktok-videos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .tiktok-video {
+            max-width: 100%;
+        }
+
+        footer {
+            background-color: #4B5563;
+            color: #E5E7EB;
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.875rem;
+        }
+
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 4px;
+            background-color: #ec4899;
+            z-index: 9999;
+        }
+
+        /* Mobile-specific styles */
+        @media (max-width: 767px) {
+            .hero-section {
+                padding-top: 4rem;
+            }
+
+            .slider {
+                height: 16rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .story-content h3 {
+                font-size: 2rem;
+            }
+
+            .story-content p {
+                font-size: 1rem;
+            }
+
+            .button {
+                font-size: 1.25rem;
+                padding: 0.75rem 1.5rem;
+            }
+
+            .how-to-buy h3 {
+                font-size: 1.25rem;
+            }
+
+            .how-to-buy p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="scroll-progress"></div>
+    <nav>
+        <div class="container">
+            <a href="#top" class="logo" id="logo-link">
+                <img src="images/lggg-MQY6Rl0KflAdkdOARK88WHWjFligv9.png" alt="$PIM Logo">
+            </a>
+            <div class="menu-toggle">☰</div>
+            <div class="nav-links">
+                <a href="#story">PIM'S STORY</a>
+                <a href="#mission">MISSION</a>
+                <a href="#gallery">GALLERY</a>
+                <a href="#buy">HOW TO BUY</a>
+                <a href="#shows-up">$PIM SHOWS UP</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-section">
+        <div class="hero-content container">
+            <div class="slider" id="top">
+                <div class="slider-container">
+                    <img src="images/Fy1lqXcWwAA7tHi.jpg-ZatX469ow5cgPBPKJTHx2z3vSBw2ID.jpeg"
+                        alt="Close-up of Pim character">
+                    <img src="images/Smiling-friends-characters-kXFHR8krE6OwKQ0vfwKbDBJPsr0NuV.webp"
+                        alt="Messy office break room scene">
+                    <img src="images/smiling-friends.jpg-GUaE4DN3wwDGFaWU0pC2zUm0EkaKYx.jpeg"
+                        alt="Characters having a conversation in break room">
+                    <img src="images/smiling-friends-2.jpg-4UyyJu5eF5RPYDALLyU1fA6RapK0uD.jpeg"
+                        alt="Break room scene with characters around table">
+                    <img src="images/SaltysManagersOffice.jpg-hVhWg4H4C0M6IAnrFyotjJsyo8piev.jpeg"
+                        alt="Office scene from different angle">
+                    <img src="images/INT-SALTYS.jpg-tpNjdEzGXtDq98aFhpxCkAS6jUBSrI.jpeg"
+                        alt="Salty's restaurant interior scene">
+                </div>
+                <button class="slider-button left">&lt;</button>
+                <button class="slider-button right">&gt;</button>
+                <div class="slider-dots"></div>
+            </div>
+
+            <div class="hero-buttons">
+                <button id="copyAddress"
+                    class="button copy-address">zrvL3iuAqoBdfwAmaUYrYcS8UjUk6LbKrexT7aepump</button>
+
+                <a href="https://pump.fun/" target="_blank" class="button buy-pim">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        style="vertical-align: middle; margin-right: 0.5rem;">
+                        <path d="m6 9 6 6 6-6" />
+                    </svg>
+                    BUY $PIM NOW!!!
+                </a>
+            </div>
+
+            <div class="social-links">
+                <a href="https://x.com/pimonsolana" class="social-link">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
+                    </svg>
+                </a>
+                <a href="https://dexscreener.com/solana/zrvL3iuAqoBdfwAmaUYrYcS8UjUk6LbKrexT7aepump" target="_blank"
+                    class="social-link">
+                    <img src="images/dtv3sp8.png" width="24" height="24" alt="YouTube icon">
+                </a>
+                <a href="https://t.me/pimonsol" target="_blank" class="social-link">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 2 11 13" />
+                        <path d="M22 2 15 22 11 13 2 9 22 2z" />
+                    </svg>
+                </a>
+                <a href="https://www.dextools.io/app/en/solana/pair-explorer/zrvL3iuAqoBdfwAmaUYrYcS8UjUk6LbKrexT7aepump"
+                    target="_blank" class="social-link">
+                    <img src="images/zzxNpvG.png" width="24" height="24" alt="Social icon">
+                </a>
+            </div>
+        </div>
+        <div class="hero-gradient"></div>
+    </section>
+
+    <main class="container">
+        <div class="energy-bar"></div>
+
+        <section id="story" class="section">
+            <h2 class="section-title">PIM'S STORY</h2>
+            <div class="story-container">
+                <div class="story-image">
+                    <img src="images/PimandBirdie-3oY2XXLCwgEuBnw8WfdTNJAN86arth.webp"
+                        alt="Pim with a blue bird in the forest">
+                </div>
+                <div class="story-content">
+                    <h3>Meet Pim</h3>
+                    <p>Pim is the eternally optimistic and cheerful character from Smiling Friends Inc., where he works
+                        alongside his best friend Charlie to spread happiness throughout the world. Known for his pink
+                        appearance, infectious positivity, and unwavering kindness, Pim has become a beloved icon of joy
+                        in the crypto space.</p>
+                    <p>Just like how Pim dedicates his life to making others smile, $PIM token aims to bring joy and
+                        prosperity to its community. With his signature optimism and friendly demeanor, Pim represents
+                        everything our memecoin stands for - spreading happiness, building friendships, and creating
+                        value through positivity.</p>
+                    <button class="button" onclick="window.open('https://t.me/pimonsol', '_blank')">Join the Happiness
+                        Revolution</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="mission" class="section">
+            <h2 class="section-title">MISSION</h2>
+            <div class="story-container">
+                <div class="story-image">
+                    <img src="images/smiling-friends.jpg-GUaE4DN3wwDGFaWU0pC2zUm0EkaKYx.jpeg"
+                        alt="Smiling Friends characters">
+                </div>
+                <div class="story-content">
+                    <h3>Connecting $PIM to Smiling Friends</h3>
+                    <p>Our mission is to create a direct link between the $PIM memecoin and the beloved Smiling Friends
+                        series. We aim to elevate Michael Cusack, the creative genius behind Smiling Friends, to the
+                        status of a crypto legend – much like Matt Furie became with Pepe the Frog.</p>
+                    <p>By fostering this connection, we're not just creating a memecoin; we're building a bridge between
+                        the world of animation and the crypto space. Our goal is to bring the joy and humor of Smiling
+                        Friends to the blockchain, creating a unique and vibrant community of fans and crypto
+                        enthusiasts alike.</p>
+                    <button class="button" onclick="window.open('https://x.com/pimonsolana', '_blank')">Join Our
+                        Mission</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="section">
+            <h2 class="section-title">SMILING FRIENDS GALLERY</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="images/Mr_Frog-kqCXydFLEJD679ePHkhM3zWG8K4glH.webp"
+                        alt="Library scene with multiple Smiling Friends characters">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/Pim_Pimling_29-NEWHiaLiHYF2xUMLjhIGdQHOKsVBvS.webp" alt="Pim in a business suit">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/d541cd17-82e3-456f-bbef-2265292510f8-EEGw4rW7dDUZr6ixrGYWpfEem6inkF.webp"
+                        alt="Close-up character portrait">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/PimandBirdie-qEQytdMz75Di4lK8vMzJQUYTEoFQ5c.webp"
+                        alt="Pim with blue bird in forest">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/AS_SmilingFriends_207_TheMagicalRedJewelAKATylerGetsFired-B6YFG3LAPSLGXhZMGFT6Q25sWGQjIw.webp"
+                        alt="Pim with elderly character">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/Mr._Frog_Zooted_off_the_Purple_Dust-6LmgdDfTyLoEhZvtLpzJgfYZ7YM5lA.webp"
+                        alt="Pim and Mr. Frog scene">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/Vlcsnap-2024-06-24-18h17m34s814-kEMKYfPQMTCW5Sr1wKPPszjTWVFlz6.webp"
+                        alt="Winter ice skating scene">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/MrFrogEarlyPromoArt%20%281%29-wRNeDrJ6R6EXBI3GyleZhffjvvmBK0.webp"
+                        alt="Group scene with characters">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/smiling-friends.jpg-vvCu4GVhP9zzS5if8UYzHroU5JpkXe.jpeg"
+                        alt="Indoor scene with multiple characters">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/smilings-mFZsPpjYHntcAGzdPrqLfQGlEJ8JvS.webp"
+                        alt="Pim in front of a building with yellow sun">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/Screenshot_2024-04-01_at_9.25.15_AM-vf6rh7NXeBGAQdij4fZWqwRDnyGhCh.webp"
+                        alt="Pim with arms spread wide">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/UFOEpisode-IMVvbyDOuK79hgQ8QkUmeFTBWpBuNu.webp"
+                        alt="UFO scene with characters in green light">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/i-painted-pim-pimling-as-the-mona-lisa-v0-bvd54dsgk74d1.jpg-MUTUJ8ZVAlZj2WjUsnOIiVEAySAJ6a.jpeg"
+                        alt="Pim as Mona Lisa artwork">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/b63a7c12-7c01-472b-8eba-1f27279c5c12.jpg-EanftRFiqSviHCKCY3Gni4d8B33l3j.jpeg"
+                        alt="Restaurant scene with two characters">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/Fy1lqXcWwAA7tHi.jpg-lo28HNnjkLkblNszFuRhsKvZ6ofNQR.jpeg" alt="Cheerful Pim pose">
+                </div>
+            </div>
+        </section>
+
+        <section id="buy" class="section how-to-buy-section">
+            <div class="parallax-bg"></div>
+            <h2 class="section-title">HOW TO BUY $PIM</h2>
+            <div class="how-to-buy">
+                <ol>
+                    <li>
+                        <h3>SET UP YOUR WALLET</h3>
+                        <p>Set up your crypto wallet (e.g. Phantom)</p>
+                    </li>
+                    <li>
+                        <h3>BUY SOLANA</h3>
+                        <p>Use your favorite exchange, like Coinbase for example, to buy SOME $SOL. Later send them to
+                            your phantom address</p>
+                    </li>
+                    <li>
+                        <h3>BUY $PIM</h3>
+                        <p>GO TO SWAP IN THE PHANTOM WALLET AND ENTER THE $PIM CONTRACT ADDRESS (CA) TO SWAP YOUR $SOL
+                            FOR $PIM</p>
+                    </li>
+                </ol>
+                <button class="button inverted"
+                    onclick="window.open('https://pump.fun/zrvL3iuAqoBdfwAmaUYrYcS8UjUk6LbKrexT7aepump', '_blank')">Buy
+                    $PIM Now</button>
+            </div>
+        </section>
+
+        <section id="shows-up" class="section">
+            <h2 class="section-title">$PIM SHOWS UP</h2>
+            <div class="tiktok-videos">
+                <div class="tiktok-video">
+                    <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@prizelbits/video/7356356349514698030"
+                        data-video-id="7356356349514698030">
+                        <section><a target="_blank" title="@prizelbits"
+                                href="https://www.tiktok.com/@prizelbits?refer=embed">@prizelbits</a>
+                            <p>Pim is the best character in Smiling Friends</p> <a target="_blank"
+                                title="♬ original sound - Prizel"
+                                href="https://www.tiktok.com/music/original-sound-7356356366325506846?refer=embed">♬
+                                original sound - Prizel</a>
+                        </section>
+                    </blockquote>
+                    <script async src="js/embed_v1.0.12.js"></script>
+                </div>
+                <div class="tiktok-video">
+                    <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@adultswim/video/7217060120440655146"
+                        data-video-id="7217060120440655146" style="max-width: 605px;min-width: 325px;">
+                        <section> <a target="_blank" title="@adultswim"
+                                href="https://www.tiktok.com/@adultswim?refer=embed">@adultswim</a> We're always on the
+                            left <a title="smilingfriends" target="_blank"
+                                href="https://www.tiktok.com/tag/smilingfriends?refer=embed">#smilingfriends</a> <a
+                                target="_blank" title="♬ original sound - [adult swim]"
+                                href="https://www.tiktok.com/music/original-sound-7217060192125553451?refer=embed">♬
+                                original sound - [adult swim]</a> </section>
+                    </blockquote>
+                    <script async src="js/embed_v1.0.12.js"></script>
+                </div>
+                <div class="tiktok-video">
+                    <blockquote class="tiktok-embed"
+                        cite="https://www.tiktok.com/@finntasticcc/video/7391085496610442529"
+                        data-video-id="7391085496610442529">
+                        <section><a target="_blank" title="@finntasticcc"
+                                href="https://www.tiktok.com/@finntasticcc?refer=embed">@finntasticcc</a>
+                            <p>Pim is so cute 🥺 #smilingfriends #pim #animation #cartoon</p> <a target="_blank"
+                                title="♬ original sound - Finn"
+                                href="https://www.tiktok.com/music/original-sound-7391085506949556993?refer=embed">♬
+                                original sound - Finn</a>
+                        </section>
+                    </blockquote>
+                    <script async src="js/embed_v1.0.12.js"></script>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>$PIM is a fan page of Smiling Friends and is not officially affiliated with the original series in any way.
+        </p>
+    </footer>
+
+    <div id="toast" class="toast">Copied to clipboard!</div>
+
+    <script>
+        // Slider functionality
+        const sliderContainer = document.querySelector('.slider-container');
+        const sliderDots = document.querySelector('.slider-dots');
+        const images = sliderContainer.querySelectorAll('img');
+        const leftButton = document.querySelector('.slider-button.left');
+        const rightButton = document.querySelector('.slider-button.right');
+        let currentIndex = 0;
+
+        function updateSlider() {
+            sliderContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+            updateDots();
+        }
+
+        function updateDots() {
+            sliderDots.innerHTML = '';
+            images.forEach((_, index) => {
+                const dot = document.createElement('div');
+                dot.classList.add('slider-dot');
+                if (index === currentIndex) {
+                    dot.classList.add('active');
+                }
+                dot.addEventListener('click', () => {
+                    currentIndex = index;
+                    updateSlider();
+                });
+                sliderDots.appendChild(dot);
+            });
+        }
+
+        leftButton.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            updateSlider();
+        });
+
+        rightButton.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % images.length;
+            updateSlider();
+        });
+
+        updateDots();
+
+        // Auto-slide functionality
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % images.length;
+            updateSlider();
+        }, Math.floor(Math.random() * (10000 - 7000 + 1) + 7000));
+
+        // Copy address functionality
+        const copyAddressButton = document.getElementById('copyAddress');
+        const toast = document.getElementById('toast');
+
+        copyAddressButton.addEventListener('click', () => {
+            navigator.clipboard.writeText('zrvL3iuAqoBdfwAmaUYrYcS8UjUk6LbKrexT7aepump');
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Scroll progress bar
+        window.addEventListener('scroll', () => {
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollPercentage = (scrollTop / (documentHeight - windowHeight)) * 100;
+
+            document.querySelector('.scroll-progress').style.width = `${scrollPercentage}%`;
+        });
+
+        // Logo click handler for smooth scroll to top
+        document.getElementById('logo-link').addEventListener('click', function (e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Parallax effect for How to Buy section
+        window.addEventListener('scroll', () => {
+            const parallaxBg = document.querySelector('.parallax-bg');
+            const scrolled = window.pageYOffset;
+            parallaxBg.style.transform = `translateY(${scrolled * 0.5}px)`;
+        });
+
+        // Mobile menu toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Close mobile menu when a link is clicked
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth < 768) {
+                    navLinks.style.display = 'none';
+                }
+            });
+        });
+
+        // Adjust menu display on window resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768) {
+                navLinks.style.display = 'flex';
+            } else {
+                navLinks.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+
+</html>
